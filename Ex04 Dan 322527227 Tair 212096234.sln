@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus. Interfaces", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus.Events", "Ex04.Menus.Events\Ex04.Menus.Events.csproj", "{A8E10D24-694B-43E8-A5CF-540DCF6ADE61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus.Tes", "Ex04.Menus.Tes\Ex04.Menus.Tes.csproj", "{5EE841DF-02A3-4A31-B8C6-995388273258}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex04.Menus.Test", "Ex04.Menus.Tes\Ex04.Menus.Test.csproj", "{5EE841DF-02A3-4A31-B8C6-995388273258}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
