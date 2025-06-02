@@ -6,24 +6,34 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Events
 {
-    internal class MenuItem
+    public class MenuItem
     {
         public string Title { get; }
-        public List<MenuItem> SubItems { get; }
-        public Action Action { get; }
 
-        public MenuItem(string i_Title, Action i_Action)
+        public event Action<MenuItem> Clicked;
+
+        public MenuItem(string i_Title)
         {
             Title = i_Title;
-            Action = i_Action;
-            SubItems = new List<MenuItem>();
         }
 
-        public void AddSubItem(MenuItem i_SubItem)
+        public void Draw()
         {
-            SubItems.Add(i_SubItem);
+            Console.WriteLine("{0}", Title);
         }
 
-        public bool IsLeaf => SubItems.Count == 0 && Action != null;
+        public void AMethodForMenuToTellIWasClicked()
+        {
+            Console.Clear();
+            OnClicked();
+        }
+
+        protected virtual void OnClicked()
+        {
+            if (Clicked != null)
+            {   
+                Clicked.Invoke(this);
+            }
+        }
     }
 }

@@ -6,64 +6,68 @@ using System.Threading.Tasks;
 
 namespace Ex04.Menus.Events
 {
-    internal class MainMenu
+    public class MainMenu
     {
-        private readonly MenuItem r_Root;
+        private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
 
-        public MainMenu(MenuItem i_Root)
+        public string Title { get; set; }
+
+        private readonly bool r_IsRootMenu;
+
+        public void AddMenuItem(MenuItem i_Item)
         {
-            r_Root = i_Root;
+            r_MenuItems.Add(i_Item);
+        }
+
+        public MainMenu(string i_Title, bool i_IsRootMenu = false)
+        {
+            Title = i_Title;
+            r_IsRootMenu = i_IsRootMenu;
         }
 
         public void Show()
         {
-            navigateMenu(r_Root);
-        }
-
-        private void navigateMenu(MenuItem i_CurrentMenu)
-        {
             while(true)
             {
                 Console.Clear();
-                Console.WriteLine($"** {i_CurrentMenu.Title} **");
-                Console.WriteLine(new string('-', i_CurrentMenu.Title.Length + 6));
+                Console.WriteLine("{0}", Title);
+                Console.WriteLine(new string('-', Title.Length + 8));
 
-                for (int i = 0; i < i_CurrentMenu.SubItems.Count; i++)
+                for(int i = 0; i < r_MenuItems.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {i_CurrentMenu.SubItems[i].Title}");
+                    Console.Write($"{i + 1}. ");
+                    r_MenuItems[i].Draw();
                 }
 
-                Console.WriteLine("0. " + (i_CurrentMenu == r_Root ? "Exit" : "Back"));
+                string exitOrBack = r_IsRootMenu ? "Exit" : "Back";
+                string exitOrBackPrompt = r_IsRootMenu ? "exit" : "back";
 
-                Console.Write("Please enter your choice: ");
+                Console.WriteLine("0. {0}", exitOrBack);
+                if(r_MenuItems.Count > 0)
+                {
+                    Console.Write($"Please select an option (1-{r_MenuItems.Count} or 0 to {exitOrBackPrompt}): ");
+                }
 
                 string input = Console.ReadLine();
-
-
-                if (!int.TryParse(input, out int choice) || choice < 0 || choice > i_CurrentMenu.SubItems.Count)
+                if(int.TryParse(input, out int choice) && choice >= 0 && choice <= r_MenuItems.Count)
                 {
-                    Console.WriteLine("Invalid choice. Press any key to try again.");
-                    Console.ReadKey();
-                    continue;
-                }
+                    if (choice == 0)
+                    {
+                        return;
+                    }
 
-                if (choice == 0) break;
-
-                MenuItem selected = i_CurrentMenu.SubItems[choice - 1];
-                if (selected.IsLeaf)
-                {
-                    Console.Clear();
-                    selected.Action?.Invoke();
-                    Console.WriteLine("\nPress any key to return...");
+                    MenuItem selectedItem = r_MenuItems[choice - 1];
+                    selectedItem.AMethodForMenuToTellIWasClicked();
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to return to the menu...");
                     Console.ReadKey();
                 }
                 else
                 {
-                    navigateMenu(selected);
+                    Console.WriteLine("Invalid input. Press any key to try again...");
+                    Console.ReadKey();
                 }
             }
         }
-
-
     }
 }
