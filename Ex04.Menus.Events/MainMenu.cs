@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Ex04.Menus.Events
 {
@@ -53,14 +50,15 @@ namespace Ex04.Menus.Events
                 {
                     if (choice == 0)
                     {
+                        Console.WriteLine("Returning...");
                         return;
                     }
-
-                    MenuItem selectedItem = r_MenuItems[choice - 1];
-                    selectedItem.AMethodForMenuToTellIWasClicked();
-                    Console.WriteLine();
-                    Console.WriteLine("Press any key to return to the menu...");
-                    Console.ReadKey();
+                   
+                        MenuItem selectedItem = r_MenuItems[choice - 1];
+                        selectedItem.AMethodForMenuToTellIWasClicked();
+                        Console.WriteLine();
+                        Console.WriteLine("Press any key to return to the menu...");
+                        Console.ReadKey();
                 }
                 else
                 {
