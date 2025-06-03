@@ -3,27 +3,25 @@ using System.Collections.Generic;
 
 namespace Ex04.Menus.Interfaces
 {
-    public class MenuItem : IMenuItemListener
+    public class MenuItem
     {
         public string Title { get; }
 
-        private readonly List<IMenuItemListener> r_ClickedListeners = new List<IMenuItemListener>();
+        private readonly List<IListener<MenuItem>> r_Listeners = new List<IListener<MenuItem>>();
 
-        private List<IListener<object>> m_ShowVersionListeners;
-
-        public MenuItem(string iTitle)
+        public MenuItem(string i_Title)
         {
-            Title = iTitle;
+            Title = i_Title;
         }
 
-        public void AttachListener(IMenuItemListener iListener)
+        public void AddListener(IListener<MenuItem> i_Listener)
         {
-            r_ClickedListeners.Add(iListener);
+            r_Listeners.Add(i_Listener);
         }
 
-        public void DetachListener(IMenuItemListener iListener)
+        public void RemoveListener(IListener<MenuItem> i_Listener)
         {
-            r_ClickedListeners.Remove(iListener);
+            r_Listeners.Remove(i_Listener);
         }
 
         public void Draw()
@@ -31,16 +29,16 @@ namespace Ex04.Menus.Interfaces
             Console.WriteLine("{0}", Title);
         }
 
-        private void doWhenClick()
+        public void AMethodForMenuToTellIWasClicked()
         {
-            notifyClickListeners();
+            notifyListeners();
         }
 
-        private void notifyClickListeners()
+        private void notifyListeners()
         {
-            foreach (IMenuItemListener listener in r_ClickedListeners)
+            foreach (IListener<MenuItem> listener in r_Listeners)
             {
-                listener.ReportClick();
+                listener.Report(this);
             }
         }
     }

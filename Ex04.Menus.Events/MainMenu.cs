@@ -24,13 +24,13 @@ namespace Ex04.Menus.Events
 
         public void Show()
         {
-            while(true)
+            while (true)
             {
                 Console.Clear();
                 Console.WriteLine("{0}", Title);
                 Console.WriteLine(new string('-', Title.Length + 8));
 
-                for(int i = 0; i < r_MenuItems.Count; i++)
+                for (int i = 0; i < r_MenuItems.Count; i++)
                 {
                     Console.Write($"{i + 1}. ");
                     r_MenuItems[i].Draw();
@@ -40,25 +40,25 @@ namespace Ex04.Menus.Events
                 string exitOrBackPrompt = r_IsRootMenu ? "exit" : "back";
 
                 Console.WriteLine("0. {0}", exitOrBack);
-                if(r_MenuItems.Count > 0)
+                if (r_MenuItems.Count > 0)
                 {
                     Console.Write($"Please select an option (1-{r_MenuItems.Count} or 0 to {exitOrBackPrompt}): ");
                 }
 
                 string input = Console.ReadLine();
-                if(int.TryParse(input, out int choice) && choice >= 0 && choice <= r_MenuItems.Count)
+                if (int.TryParse(input, out int choice) && choice >= 0 && choice <= r_MenuItems.Count)
                 {
                     if (choice == 0)
                     {
                         Console.WriteLine("Returning...");
                         return;
                     }
-                   
-                        MenuItem selectedItem = r_MenuItems[choice - 1];
-                        selectedItem.AMethodForMenuToTellIWasClicked();
-                        Console.WriteLine();
-                        Console.WriteLine("Press any key to return to the menu...");
-                        Console.ReadKey();
+
+                    MenuItem selectedItem = r_MenuItems[choice - 1];
+                    selectedItem.AMethodForMenuToTellIWasClicked();
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to return to the menu...");
+                    Console.ReadKey();
                 }
                 else
                 {

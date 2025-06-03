@@ -1,6 +1,8 @@
 ﻿using System;
-using Ex04.Menus.Events;
-
+using System.Collections.Generic;
+using Ex04.Menus.Interfaces;
+using MainMenu = Ex04.Menus.Events.MainMenu;
+using MenuItem = Ex04.Menus.Events.MenuItem;
 
 namespace Ex04.Menus.Test
 {
@@ -8,13 +10,44 @@ namespace Ex04.Menus.Test
     {
         public static void Main()
         {
-            MainMenu topMenu = buildFullMenu();
-            topMenu.Show();
+            Console.WriteLine("Running Interfaces Menu...");
+            Interfaces.MainMenu interfacesMenu = buildInterfacesMenu();
+            interfacesMenu.Show();
+
+            Console.WriteLine();
+            Console.WriteLine("Running Events Menu...");
+            MainMenu eventsMenu = buildEventsMenu();
+            eventsMenu.Show();
         }
 
-        private static MainMenu buildFullMenu()
+        private static Interfaces.MainMenu buildInterfacesMenu()
         {
-            MainMenu mainMenu = new MainMenu("Delegates Main Menu",true);
+            Interfaces.MainMenu mainMenu = new Interfaces.MainMenu("Interfaces Main Menu", true);
+
+            // Submenu 1: Letters and Version
+            Interfaces.MenuItem letters = new Interfaces.MenuItem("Letters and Version");
+            Interfaces.MenuItem showVersion = new Interfaces.MenuItem("Show Version");
+            showVersion.AddListener(new ShowVersion());
+            Interfaces.MenuItem countLower = new Interfaces.MenuItem("Count Lowercase Letters");
+            countLower.AddListener(new CountLowercase());
+            letters.AddListener(new SubMenuLauncher("Letters and Version", new List<Interfaces.MenuItem> { showVersion, countLower }));
+
+            // Submenu 2: Date/Time
+            Interfaces.MenuItem dateTime = new Interfaces.MenuItem("Show Current Date/Time");
+            Interfaces.MenuItem showDate = new Interfaces.MenuItem("Show Current Date");
+            showDate.AddListener(new ShowDate());
+            Interfaces.MenuItem showTime = new Interfaces.MenuItem("Show Current Time");
+            showTime.AddListener(new ShowTime());
+            dateTime.AddListener(new SubMenuLauncher("Show Current Date/Time", new List<Interfaces.MenuItem> { showDate, showTime }));
+
+            mainMenu.AddMenuItem(letters);
+            mainMenu.AddMenuItem(dateTime);
+            return mainMenu;
+        }
+
+        private static MainMenu buildEventsMenu()
+        {
+            MainMenu mainMenu = new MainMenu("Delegates Main Menu", true);
 
             // Submenu 1
             MainMenu lettersMenu = new MainMenu("Letters and Version");

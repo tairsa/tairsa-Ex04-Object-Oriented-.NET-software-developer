@@ -3,13 +3,12 @@ using System.Collections.Generic;
 
 namespace Ex04.Menus.Interfaces
 {
-    public class MainMenu : IMenuItemListener
+    public class MainMenu
     {
         private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
+        private readonly bool r_IsRootMenu;
 
         public string Title { get; set; }
-
-        private readonly bool r_IsRootMenu;
 
         public MainMenu(string i_Title, bool i_IsRootMenu = false)
         {
@@ -22,17 +21,12 @@ namespace Ex04.Menus.Interfaces
             r_MenuItems.Add(i_Item);
         }
 
-        public void ReportClick()
-        {
-            Console.WriteLine();
-        }
-
         public void Show()
         {
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("{0}", Title);
+                Console.WriteLine(Title);
                 Console.WriteLine(new string('-', Title.Length + 8));
 
                 for (int i = 0; i < r_MenuItems.Count; i++)
@@ -42,12 +36,11 @@ namespace Ex04.Menus.Interfaces
                 }
 
                 string exitOrBack = r_IsRootMenu ? "Exit" : "Back";
-                string exitOrBackPrompt = r_IsRootMenu ? "exit" : "back";
-
                 Console.WriteLine($"0. {exitOrBack}");
+
                 if (r_MenuItems.Count > 0)
                 {
-                    Console.Write($"Please select an option (1-{r_MenuItems.Count} or 0 to {exitOrBackPrompt}): ");
+                    Console.Write($"Please select an option (1-{r_MenuItems.Count} or 0 to {exitOrBack.ToLower()}): ");
                 }
 
                 string input = Console.ReadLine();
@@ -60,22 +53,12 @@ namespace Ex04.Menus.Interfaces
                     }
 
                     MenuItem selectedItem = r_MenuItems[choice - 1];
+                    Console.Clear();
+                    selectedItem.AMethodForMenuToTellIWasClicked();
 
-                    if (selectedItem.HasSubItems)
-                    {
-                        new MainMenu(selectedItem.Title)
-                        {
-                            Title = selectedItem.Title
-                        }.WithItemsFrom(selectedItem).Show();
-                    }
-                    else
-                    {
-                        Console.Clear();
-                        selectedItem.AMethodForMenuToTellIWasClicked();
-                        Console.WriteLine();
-                        Console.WriteLine("Press any key to return to the menu...");
-                        Console.ReadKey();
-                    }
+                    Console.WriteLine();
+                    Console.WriteLine("Press any key to return to the menu...");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -83,16 +66,6 @@ namespace Ex04.Menus.Interfaces
                     Console.ReadKey();
                 }
             }
-        }
-
-        // Helper method to clone subitems
-        private MainMenu WithItemsFrom(MenuItem item)
-        {
-            foreach (var subItem in item.SubItems)
-            {
-                AddMenuItem(subItem);
-            }
-            return this;
         }
     }
 }

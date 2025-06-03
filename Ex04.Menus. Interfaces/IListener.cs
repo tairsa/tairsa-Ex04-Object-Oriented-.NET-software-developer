@@ -2,6 +2,6 @@
 {
     public interface IListener<T>
     {
-        void ReportClick();
+        void Report(T i_Param);
     }
 }
