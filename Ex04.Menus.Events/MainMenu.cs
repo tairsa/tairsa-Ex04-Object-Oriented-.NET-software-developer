@@ -8,7 +8,7 @@ namespace Ex04.Menus.Events
         private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
         private readonly bool r_IsRootMenu;
 
-        public string Title { get; set; }
+        private string Title { get; }
 
         public MainMenu(string i_Title, bool i_IsRootMenu = false)
         {
@@ -49,11 +49,12 @@ namespace Ex04.Menus.Events
                 {
                     if (choice == 0)
                     {
-                        Console.WriteLine("Returning...");
+                        Console.Clear();
                         return;
                     }
 
                     MenuItem selectedItem = r_MenuItems[choice - 1];
+                    Console.Clear();
                     selectedItem.AMethodForMenuToTellIWasClicked(); 
 
                     Console.WriteLine();

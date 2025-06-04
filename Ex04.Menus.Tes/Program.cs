@@ -24,7 +24,6 @@ namespace Ex04.Menus.Test
         {
             Interfaces.MainMenu mainMenu = new Interfaces.MainMenu("Interfaces Main Menu", true);
 
-            // Submenu 1: Letters and Version
             Interfaces.MenuItem letters = new Interfaces.MenuItem("Letters and Version");
             Interfaces.MenuItem showVersion = new Interfaces.MenuItem("Show Version");
             showVersion.AddListener(new ShowVersion());
@@ -32,7 +31,6 @@ namespace Ex04.Menus.Test
             countLower.AddListener(new CountLowercase());
             letters.AddListener(new SubMenuLauncher("Letters and Version", new List<Interfaces.MenuItem> { showVersion, countLower }));
 
-            // Submenu 2: Date/Time
             Interfaces.MenuItem dateTime = new Interfaces.MenuItem("Show Current Date/Time");
             Interfaces.MenuItem showDate = new Interfaces.MenuItem("Show Current Date");
             showDate.AddListener(new ShowDate());
@@ -50,7 +48,6 @@ namespace Ex04.Menus.Test
         {
             MainMenu mainMenu = new MainMenu("Delegates Main Menu", true);
 
-            // Submenu 1
             MainMenu lettersMenu = new MainMenu("Letters and Version");
 
             MenuItem showVersionItem = new MenuItem("Show Version");
@@ -66,7 +63,6 @@ namespace Ex04.Menus.Test
             lettersMenuItem.Clicked += (i_Sender) => lettersMenu.Show();
             mainMenu.AddMenuItem(lettersMenuItem);
 
-            // Submenu 2
             MainMenu dateTimeMenu = new MainMenu("Show Current Date/Time");
 
             MenuItem showDateItem = new MenuItem("Show Current Date");
@@ -97,11 +93,14 @@ namespace Ex04.Menus.Test
 
             int count = 0;
 
-            foreach (char c in input)
+            if(input != null)
             {
-                if (char.IsLower(c))
+                foreach(char c in input)
                 {
-                    count++;
+                    if(char.IsLower(c))
+                    {
+                        count++;
+                    }
                 }
             }
 

@@ -8,7 +8,7 @@ namespace Ex04.Menus.Interfaces
         private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
         private readonly bool r_IsRootMenu;
 
-        public string Title { get; set; }
+        private string Title { get; }
 
         public MainMenu(string i_Title, bool i_IsRootMenu = false)
         {

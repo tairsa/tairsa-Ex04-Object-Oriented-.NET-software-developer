@@ -12,11 +12,14 @@ namespace Ex04.Menus.Test
 
             int count = 0;
 
-            foreach (char c in input)
+            if(input != null)
             {
-                if (char.IsLower(c))
+                foreach(char c in input)
                 {
-                    count++;
+                    if(char.IsLower(c))
+                    {
+                        count++;
+                    }
                 }
             }
 

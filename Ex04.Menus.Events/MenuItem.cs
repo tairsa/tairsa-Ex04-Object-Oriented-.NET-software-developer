@@ -4,7 +4,7 @@ namespace Ex04.Menus.Events
 {
     public class MenuItem
     {
-        public string Title { get; }
+        private string Title { get; }
 
         public event Action<MenuItem> Clicked;
 

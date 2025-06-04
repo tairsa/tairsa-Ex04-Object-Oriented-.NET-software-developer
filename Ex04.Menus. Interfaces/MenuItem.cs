@@ -5,7 +5,7 @@ namespace Ex04.Menus.Interfaces
 {
     public class MenuItem
     {
-        public string Title { get; }
+        private string Title { get; }
 
         private readonly List<IListener<MenuItem>> r_Listeners = new List<IListener<MenuItem>>();
 
