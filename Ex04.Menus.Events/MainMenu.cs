@@ -6,20 +6,19 @@ namespace Ex04.Menus.Events
     public class MainMenu
     {
         private readonly List<MenuItem> r_MenuItems = new List<MenuItem>();
-
-        public string Title { get; set; }
-
         private readonly bool r_IsRootMenu;
 
-        public void AddMenuItem(MenuItem i_Item)
-        {
-            r_MenuItems.Add(i_Item);
-        }
+        public string Title { get; set; }
 
         public MainMenu(string i_Title, bool i_IsRootMenu = false)
         {
             Title = i_Title;
             r_IsRootMenu = i_IsRootMenu;
+        }
+
+        public void AddMenuItem(MenuItem i_Item)
+        {
+            r_MenuItems.Add(i_Item);
         }
 
         public void Show()
@@ -55,7 +54,8 @@ namespace Ex04.Menus.Events
                     }
 
                     MenuItem selectedItem = r_MenuItems[choice - 1];
-                    selectedItem.AMethodForMenuToTellIWasClicked();
+                    selectedItem.AMethodForMenuToTellIWasClicked(); 
+
                     Console.WriteLine();
                     Console.WriteLine("Press any key to return to the menu...");
                     Console.ReadKey();

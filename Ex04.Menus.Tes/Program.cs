@@ -42,6 +42,7 @@ namespace Ex04.Menus.Test
 
             mainMenu.AddMenuItem(letters);
             mainMenu.AddMenuItem(dateTime);
+
             return mainMenu;
         }
 
@@ -95,6 +96,7 @@ namespace Ex04.Menus.Test
             string input = Console.ReadLine();
 
             int count = 0;
+
             foreach (char c in input)
             {
                 if (char.IsLower(c))

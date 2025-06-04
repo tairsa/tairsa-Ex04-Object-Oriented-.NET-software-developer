@@ -1,8 +1,9 @@
 ﻿using System;
+using Ex04.Menus.Interfaces;
 
-namespace Ex04.Menus.Interfaces
+namespace Ex04.Menus.Test
 {
-    public class CountLowercase : IListener<MenuItem>
+    internal class CountLowercase : IListener<MenuItem>
     {
         public void Report(MenuItem i_Param)
         {
@@ -10,6 +11,7 @@ namespace Ex04.Menus.Interfaces
             string input = Console.ReadLine();
 
             int count = 0;
+
             foreach (char c in input)
             {
                 if (char.IsLower(c))

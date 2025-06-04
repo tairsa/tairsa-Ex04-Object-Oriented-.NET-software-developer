@@ -2,6 +2,6 @@
 {
     public interface IListener<T>
     {
-        void Report(T i_Param);
+        void Report(T i_param);
     }
 }

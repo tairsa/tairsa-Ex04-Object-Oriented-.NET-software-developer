@@ -1,8 +1,9 @@
 ﻿using System;
+using Ex04.Menus.Interfaces;
 
-namespace Ex04.Menus.Interfaces
+namespace Ex04.Menus.Test
 {
-    public class ShowTime : IListener<MenuItem>
+    internal class ShowTime : IListener<MenuItem>
     {
         public void Report(MenuItem i_Param)
         {

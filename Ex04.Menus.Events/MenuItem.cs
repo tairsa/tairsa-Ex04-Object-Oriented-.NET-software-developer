@@ -13,14 +13,8 @@ namespace Ex04.Menus.Events
             Title = i_Title;
         }
 
-        public void Draw()
-        {
-            Console.WriteLine("{0}", Title);
-        }
-
         public void AMethodForMenuToTellIWasClicked()
         {
-            Console.Clear();
             OnClicked();
         }
 
@@ -30,6 +24,11 @@ namespace Ex04.Menus.Events
             {
                 Clicked.Invoke(this);
             }
+        }
+
+        public void Draw()
+        {
+            Console.WriteLine("{0}", Title);
         }
     }
 }

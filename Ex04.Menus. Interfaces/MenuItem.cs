@@ -29,7 +29,7 @@ namespace Ex04.Menus.Interfaces
             Console.WriteLine("{0}", Title);
         }
 
-        public void AMethodForMenuToTellIWasClicked()
+        public void AMethodForMenuToTellIWasClicked() 
         {
             notifyListeners();
         }
