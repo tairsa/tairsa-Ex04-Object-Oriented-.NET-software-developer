@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5EE841DF-02A3-4A31-B8C6-995388273258}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Ex04.Menus.Tes</RootNamespace>
-    <AssemblyName>Ex04.Menus.Tes</AssemblyName>
+    <RootNamespace>Ex04.Menus.Test</RootNamespace>
+    <AssemblyName>Ex04.Menus.Test</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -37,6 +37,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CountLowercase.cs" />
+    <Compile Include="EventsMenuBuilder.cs" />
+    <Compile Include="Handlers.cs" />
+    <Compile Include="InterfacesMenuBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ShowDate.cs" />
     <Compile Include="ShowTime.cs" />
